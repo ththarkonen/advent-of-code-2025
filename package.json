@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "ts-node": "ts-node"
+  },
+  "name": "aoc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "fs": "^0.0.1-security",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
