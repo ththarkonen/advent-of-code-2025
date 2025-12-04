@@ -31,8 +31,8 @@ const removeCurrentRolls = ( map: Matrix2D, nAdjacent: number)
             const enoughSpace: boolean = neighbours < nAdjacent + 1
             if( !enoughSpace ) continue
             
-            const box: number[] = [ ii, jj]
-            removedRolls.push( box )
+            const roll: number[] = [ ii, jj]
+            removedRolls.push( roll )
         }
     }
 
