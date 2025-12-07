@@ -58,31 +58,37 @@ export class Matrix2D {
         this.shape = [ this.nRows, this.nCols];
     }
 
-    get( rowInds: number[], colInds: number[]): number[]{
+    get( rowInd: number, colInd: number): number
+    get( rowInds: number[], colInds: number[]): number[]
+    get( rowInds: number | number[], colInds: number | number[]): number | number[]{
 
-        const nRowInds = rowInds.length
-        const nColdInds = colInds.length
+        const scalarRowInds = typeof rowInds === "number"
+        const scalarColInds = typeof colInds === "number"
 
-        if( nRowInds != nColdInds ) throw new Error("Index vectors must be of equal length!")
+        const vectorRowInds = Array.isArray( rowInds )
+        const vectorColInds = Array.isArray( colInds )
 
-        var ii
-        var jj
-        var element
-        var elements: number[] = []
+        if( scalarRowInds && scalarColInds ){
 
-        for( var n = 0; n < nRowInds; n++){
+            const ii = rowInds as number
+            const jj = colInds as number
             
-            ii = rowInds[n]
-            jj = colInds[n]
+            return getScalar( ii, jj, this)
 
-            if( ii == undefined || jj == undefined ) throw new Error("Undefined indices!")
-            element = this.rows?.[ii]?.[jj]
+        } else if ( vectorRowInds && vectorColInds ) {
 
-            if( element == undefined ) throw new Error("Undefined matrix element!")
-            elements.push( element )
+            const ii = rowInds as number[]
+            const jj = colInds as number[]
+
+            const nRowInds = rowInds.length
+            const nColdInds = colInds.length
+
+            if( nRowInds != nColdInds ) throw new Error("Index vectors must be of equal length!")
+
+            return getVector( ii, jj, this)
         }
 
-        return elements
+        throw new Error("Undefined matrix element get arguments.")
     }
 
     getrow( ii: number | undefined ) {
@@ -113,6 +119,37 @@ export class Matrix2D {
     }
 }
 
+const getScalar = ( ii: number, jj: number, A: Matrix2D) : number => {
+    const element = A.rows?.[ii]?.[jj]
+    if( element === undefined ) throw new Error("Undefined matrix element.")
+    return element
+}
+
+const getVector = ( rowInds: number[], colInds: number[], A: Matrix2D) : number[] => {
+
+    var ii
+    var jj
+    var element
+    var elements: number[] = []
+
+    const nRowInds = rowInds.length
+    const nColdInds = colInds.length
+
+    for( var n = 0; n < nRowInds; n++){
+        
+        ii = rowInds[n]
+        jj = colInds[n]
+
+        if( ii == undefined || jj == undefined ) throw new Error("Undefined indices.")
+        element = A.rows?.[ii]?.[jj]
+
+        if( element == undefined ) throw new Error("Undefined matrix element.")
+        elements.push( element )
+    }
+
+    return elements
+}
+
 const readmatrix = ( filePath: string, separator?: string, encoder?: Encoder) => {
 
     var rows: ( number | undefined )[][];
@@ -126,10 +163,10 @@ const readmatrix = ( filePath: string, separator?: string, encoder?: Encoder) =>
         
     } else if ( separator != undefined ) {
 
-        const data = fs.readFileSync( filePath, "utf-8");
+        const data = fs.readFileSync( filePath, "utf-8").replace(/ +(?= )/g,'');
         const lines = data.split("\n").filter( line => line.length > 0 );
 
-        rows = lines.map( line => line.split( separator ).map( Number ) );
+        rows = lines.map( line => line.trim().split( separator ).map( Number ) );
 
     } else {
 
