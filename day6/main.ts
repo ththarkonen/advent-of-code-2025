@@ -1,3 +1,7 @@
+import { Timer } from "../utils/timer.ts"
+const timer = new Timer();
+timer.start();
+
 import fs from "fs"
 import nt from "../utils/numty.ts"
 import type { Encoder } from "../utils/numty.ts"
@@ -19,5 +23,6 @@ const cephalopodColumnsR2L = comlib.parseCephalopodColumns( cephalopodData )
 const result = comlib.performOperations( operations, data.cols as number[][])
 const resultR2L = comlib.performOperations( operations, cephalopodColumnsR2L as number[][])
 
+timer.print()
 console.log( result )
 console.log( resultR2L )

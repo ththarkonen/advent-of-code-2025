@@ -1,3 +1,7 @@
+import { Timer } from "../utils/timer.ts"
+const timer = new Timer();
+timer.start();
+
 import safelib from "./Safe.ts";
 
 const filePath = "./day1/data.txt"
@@ -20,5 +24,6 @@ protocalRotations.forEach( rotation => {
 const password = safe.countStates( 0 )
 const protocalPassword = protocalSafe.countStates( 0 )
 
-console.log("Password: ", password)
-console.log("Password (new security protocal): ", protocalPassword)
+timer.print()
+console.log( password )
+console.log( protocalPassword )

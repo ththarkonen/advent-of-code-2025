@@ -1,3 +1,7 @@
+import { Timer } from "../utils/timer.ts"
+const timer = new Timer();
+timer.start();
+
 import nt from "../utils/numty.ts"
 import joltlib from "./joltlib.ts"
 
@@ -7,7 +11,6 @@ const banks = nt.readmatrix( filePath, "")
 var joltages: number[] = []
 var largeJoltages: number[] = []
 
-console.time("Solution")
 banks.rows.forEach( bank => {
 
     const joltage = joltlib.checkJoltage( bank, 2)
@@ -16,10 +19,10 @@ banks.rows.forEach( bank => {
     joltages.push( joltage )
     largeJoltages.push( largeJoltage )
 });
-console.timeEnd("Solution")
 
 const totalOutput = joltages.reduce( ( sum, jolt) => sum + jolt)
 const totalOutputLarge = largeJoltages.reduce( ( sum, jolt) => sum + jolt)
 
+timer.print()
 console.log( totalOutput )
 console.log( totalOutputLarge )
