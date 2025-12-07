@@ -1,14 +1,11 @@
 import { Matrix2D } from "../utils/numty.ts"
 
-const splitBeam = ( ii: number, jj: number, diagram: Matrix2D) : [ number, number[]] => {
+const propagateBeam = ( ii: number, jj: number, diagram: Matrix2D) : [ number, number[]] => {
 
     const nStates = diagram.get( ii - 1, jj)
     const diagramValue = diagram.get( ii, jj)
 
-    if( nStates === undefined ) throw new Error("Undefined value in the previous row.")
     if( typeof nStates !== "number" ) throw new Error("Number of states is not a number.")
-
-    if( diagramValue === undefined ) throw new Error("Current diagram value is undefined.")
     if( typeof diagramValue !== "number" ) throw new Error("Matrix element is not a number.")
 
     const notSplitter: boolean = diagramValue !== -1
@@ -26,7 +23,6 @@ const splitBeam = ( ii: number, jj: number, diagram: Matrix2D) : [ number, numbe
         if( jj < 0 || jj >= diagram.nCols ) return
         const previousStates = diagram.get( ii, jj)
 
-        if( previousStates === undefined ) return
         if( typeof previousStates !== "number") throw new Error("Matrix element is not a number.")
 
         diagram.set( ii, jj, previousStates + nStates)
@@ -52,7 +48,7 @@ const simulate = ( diagram: Matrix2D ) : number => {
 
         currentBeams.forEach( jj => {
 
-            [ split, newBeams] = splitBeam( ii, jj, diagram)
+            [ split, newBeams] = propagateBeam( ii, jj, diagram)
 
             splits = splits + split
             nextBeams.push( ...newBeams )
