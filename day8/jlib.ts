@@ -75,7 +75,7 @@ const connect = ( boxPairs: (JunctionBox | number)[][],
     var connections = startingConnections
     var nUniqueCircuits = getCircuits( boxes ).length
 
-    while( nUniqueCircuits !== 1 ){
+    while( connections < nConnections && nUniqueCircuits > 1 ){
 
         const pair = boxPairs[ connections ] as (JunctionBox | number)[]
 
@@ -87,7 +87,6 @@ const connect = ( boxPairs: (JunctionBox | number)[][],
         connections = connections + 1
         
         if( connectedBoxes ) continue
-        if( connections > nConnections ) break
 
         box.circuit.push( ...targetBox.circuit )
         box.circuit.forEach( connectedBox => {
