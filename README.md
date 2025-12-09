@@ -1,14 +1,14 @@
 | Problem | Wall time |
 | --- | ---|
-| Day 01 |  47.113ms |
-| Day 02 | 574.188ms |
-| Day 03 |   5.043ms |
-| Day 04 | 127.497ms |
-| Day 05 |  29.263ms |
-| Day 06 |   4.182ms |
-| Day 07 |  10.134ms |
-| Day 08 |  429.24ms |
-| Day 09 | 819.914ms |
-| Day 10 |   0.033ms |
-| Day 11 |   0.028ms |
-| Day 12 |   0.029ms |
+| Day 01 |  46.119 ms |
+| Day 02 | 555.374 ms |
+| Day 03 |   5.145 ms |
+| Day 04 | 126.404 ms |
+| Day 05 |  33.276 ms |
+| Day 06 |   3.989 ms |
+| Day 07 |   8.368 ms |
+| Day 08 | 409.625 ms |
+| Day 09 | 808.533 ms |
+| Day 10 |   0.032 ms |
+| Day 11 |   0.028 ms |
+| Day 12 |   0.031 ms |

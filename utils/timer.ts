@@ -16,6 +16,6 @@ export class Timer {
     }
 
     print(label: string = ""): void {
-        console.log(`${label}${this.stop()}ms`);
+        console.log(`${label}${this.stop()} ms`);
     }
 }

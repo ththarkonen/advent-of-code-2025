@@ -10,7 +10,7 @@ do
 
     # Add leading space if ii < 10
     padded="$(printf '%02d' "$ii")"
-    time_aligned="$(printf '%9s' "$time")"
+    time_aligned="$(printf '%10s' "$time")"
 
     echo "Day $padded: $time_aligned"
     echo "| Day $padded | $time_aligned |" >> "README.md"
