@@ -38,10 +38,14 @@ const checkRepeatingID = ( id: number ) => {
 
     for( var ii = 1; ii <= n; ii++){
 
-        const repeatingPart = idString.substring( 0, ii)
-        const idRepeatRemoved = idString.replaceAll( repeatingPart, "")
+        const repeats = l / ii
+        const integerRepeats = Number.isInteger( repeats )
+        if( !integerRepeats ) continue
 
-        if( idRepeatRemoved.length == 0 ) return false
+        const repeatingPart = idString.substring( 0, ii)
+        const repeatComparison = repeatingPart.repeat( repeats )
+
+        if( repeatComparison === idString ) return false
     }
 
     return true
