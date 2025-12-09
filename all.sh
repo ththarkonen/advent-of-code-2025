@@ -1,7 +1,7 @@
 #!/bin/sh
 > "README.md"
 echo "| Problem | Wall time |" >> "README.md"
-echo "| --- | ---|" >> "README.md"
+echo "| :--- | ---:|" >> "README.md"
 for ii in $(seq 1 12);
 do
     output=$(npm run ts-node day$ii/main.ts)
