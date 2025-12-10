@@ -15,5 +15,8 @@
     "fs": "^0.0.1-security",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@uandi/javascript-lp-solver": "^0.4.5"
   }
 }
