@@ -2,8 +2,10 @@ import { Timer } from "../utils/timer.ts"
 const timer = new Timer();
 timer.start();
 
-import nt from "../utils/numty.ts"
-import type { Encoder } from "../utils/numty.ts"
-import lib from "./lib.ts"
+import lib from "./sadlib.ts"
+const filePath = "./day12/data.txt"
+const result = lib.sad( filePath )
 
 timer.print()
+console.log( )
+console.log( result )
